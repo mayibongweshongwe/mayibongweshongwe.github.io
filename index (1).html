@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Mkhuleko Shongwe — FinTech Product Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --navy:#0A1628;
+  --navy2:#112240;
+  --blue:#1D4ED8;
+  --blue-light:#3B82F6;
+  --teal:#0D9488;
+  --gold:#B45309;
+  --cream:#FAFAF8;
+  --white:#FFFFFF;
+  --gray-50:#F8F9FA;
+  --gray-100:#F1F3F5;
+  --gray-200:#E9ECEF;
+  --gray-400:#868E96;
+  --gray-600:#495057;
+  --gray-800:#212529;
+  --border:#E2E8F0;
+  --shadow-sm:0 1px 3px rgba(10,22,40,0.08),0 1px 2px rgba(10,22,40,0.06);
+  --shadow-md:0 4px 16px rgba(10,22,40,0.1),0 2px 6px rgba(10,22,40,0.06);
+  --shadow-lg:0 20px 48px rgba(10,22,40,0.12),0 8px 16px rgba(10,22,40,0.06);
+}
+
+html{scroll-behavior:smooth}
+
+body{
+  background:var(--cream);
+  color:var(--gray-800);
+  font-family:'Manrope',sans-serif;
+  font-weight:400;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--cream)}
+::-webkit-scrollbar-thumb{background:var(--blue);border-radius:2px}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;width:100%;z-index:100;
+  padding:1rem 5vw;
+  display:flex;justify-content:space-between;align-items:center;
+  background:rgba(250,250,248,0.92);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  transition:box-shadow 0.3s;
+}
+nav.scrolled{box-shadow:var(--shadow-sm)}
+
+.nav-brand{
+  display:flex;flex-direction:column;
+  text-decoration:none;
+}
+.nav-name{
+  font-family:'Playfair Display',serif;
+  font-size:1rem;font-weight:700;
+  color:var(--navy);letter-spacing:-0.01em;
+}
+.nav-role{
+  font-size:0.65rem;font-weight:600;
+  color:var(--blue);letter-spacing:0.12em;
+  text-transform:uppercase;margin-top:1px;
+}
+
+.nav-links{
+  display:flex;gap:2.5rem;list-style:none;
+  align-items:center;
+}
+.nav-links a{
+  font-size:0.8rem;font-weight:600;
+  color:var(--gray-600);text-decoration:none;
+  letter-spacing:0.04em;
+  transition:color 0.2s;
+}
+.nav-links a:hover{color:var(--navy)}
+
+.nav-cta{
+  background:var(--navy)!important;
+  color:var(--white)!important;
+  padding:0.5rem 1.25rem;
+  border-radius:6px;
+  font-size:0.78rem!important;
+  transition:background 0.2s,transform 0.2s!important;
+}
+.nav-cta:hover{background:var(--blue)!important;transform:translateY(-1px)}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  background:var(--navy);
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  position:relative;
+  overflow:hidden;
+}
+
+.hero-pattern{
+  position:absolute;inset:0;
+  background-image:
+    radial-gradient(circle at 20% 80%, rgba(29,78,216,0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(13,148,136,0.1) 0%, transparent 50%);
+}
+
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size:48px 48px;
+}
+
+.hero-left{
+  padding:10rem 4rem 6rem 5vw;
+  display:flex;flex-direction:column;justify-content:center;
+  position:relative;z-index:1;
+}
+
+.hero-eyebrow{
+  display:flex;align-items:center;gap:0.75rem;
+  margin-bottom:1.75rem;
+}
+.eyebrow-line{
+  width:32px;height:2px;background:var(--teal);
+}
+.eyebrow-text{
+  font-size:0.72rem;font-weight:700;
+  color:var(--teal);letter-spacing:0.2em;text-transform:uppercase;
+}
+
+.hero-left h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(3rem,4.5vw,5rem);
+  font-weight:900;
+  line-height:1.0;
+  letter-spacing:-0.03em;
+  color:var(--white);
+  margin-bottom:1.75rem;
+}
+
+.hero-left h1 em{
+  font-style:italic;
+  color:var(--teal);
+  display:block;
+}
+
+.hero-summary{
+  color:rgba(255,255,255,0.65);
+  font-size:1rem;line-height:1.85;
+  max-width:520px;
+  margin-bottom:2.5rem;
+  font-weight:300;
+}
+
+.hero-tags{
+  display:flex;flex-wrap:wrap;gap:0.5rem;
+  margin-bottom:3rem;
+}
+.hero-tag{
+  font-size:0.72rem;font-weight:600;
+  letter-spacing:0.06em;
+  padding:0.35rem 0.9rem;
+  border:1px solid rgba(255,255,255,0.15);
+  border-radius:20px;
+  color:rgba(255,255,255,0.7);
+  background:rgba(255,255,255,0.05);
+}
+
+.hero-actions{
+  display:flex;gap:1rem;flex-wrap:wrap;
+}
+
+.btn{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  padding:0.85rem 2rem;
+  font-family:'Manrope',sans-serif;
+  font-size:0.82rem;font-weight:700;
+  letter-spacing:0.04em;
+  border-radius:8px;
+  text-decoration:none;
+  cursor:pointer;border:none;
+  transition:all 0.25s;
+}
+.btn-white{
+  background:var(--white);color:var(--navy);
+}
+.btn-white:hover{
+  background:var(--cream);
+  transform:translateY(-2px);
+  box-shadow:0 8px 24px rgba(0,0,0,0.25);
+}
+.btn-ghost{
+  background:transparent;
+  color:var(--white);
+  border:1px solid rgba(255,255,255,0.3);
+}
+.btn-ghost:hover{
+  border-color:var(--white);
+  background:rgba(255,255,255,0.08);
+  transform:translateY(-2px);
+}
+
+/* ── HERO RIGHT: IMPACT METRICS ── */
+.hero-right{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:10rem 5vw 6rem 3rem;
+  position:relative;z-index:1;
+  gap:1.25rem;
+}
+
+.metric-card{
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:14px;
+  padding:1.5rem 2rem;
+  display:flex;align-items:center;gap:1.5rem;
+  transition:all 0.3s;
+  backdrop-filter:blur(4px);
+}
+.metric-card:hover{
+  background:rgba(255,255,255,0.09);
+  border-color:rgba(255,255,255,0.2);
+  transform:translateX(-6px);
+}
+
+.metric-icon{
+  font-size:1.75rem;
+  width:52px;height:52px;
+  background:rgba(255,255,255,0.08);
+  border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+
+.metric-num{
+  font-family:'Playfair Display',serif;
+  font-size:2.2rem;font-weight:700;
+  color:var(--white);line-height:1;
+}
+.metric-num span{color:var(--teal)}
+.metric-label{
+  font-size:0.78rem;font-weight:500;
+  color:rgba(255,255,255,0.55);
+  margin-top:3px;line-height:1.4;
+}
+
+.hero-tenure{
+  margin-top:0.5rem;
+  padding:1.25rem 1.75rem;
+  background:rgba(13,148,136,0.15);
+  border:1px solid rgba(13,148,136,0.3);
+  border-radius:10px;
+  font-size:0.8rem;color:rgba(255,255,255,0.7);
+  line-height:1.6;
+}
+.hero-tenure strong{color:var(--teal)}
+
+/* ── SECTION SHELL ── */
+.section{padding:7rem 5vw;position:relative}
+.section-alt{background:var(--gray-50)}
+.section-dark{background:var(--navy);color:var(--white)}
+
+.section-header{margin-bottom:4rem}
+.section-eyebrow{
+  font-size:0.72rem;font-weight:700;
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--blue);
+  margin-bottom:0.75rem;
+  display:flex;align-items:center;gap:0.6rem;
+}
+.section-eyebrow::before{
+  content:'';display:block;
+  width:20px;height:2px;background:var(--blue);
+}
+.section-dark .section-eyebrow{color:var(--teal)}
+.section-dark .section-eyebrow::before{background:var(--teal)}
+
+h2{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2rem,3vw,3.2rem);
+  font-weight:800;
+  letter-spacing:-0.02em;
+  line-height:1.1;
+  color:var(--navy);
+}
+.section-dark h2{color:var(--white)}
+h2 em{font-style:italic;color:var(--blue)}
+.section-dark h2 em{color:var(--teal)}
+
+.section-sub{
+  margin-top:1rem;
+  font-size:1rem;color:var(--gray-600);
+  max-width:600px;line-height:1.75;font-weight:300;
+}
+.section-dark .section-sub{color:rgba(255,255,255,0.55)}
+
+/* ── EXPERIENCE TIMELINE ── */
+.timeline{
+  max-width:900px;
+  display:flex;flex-direction:column;gap:0;
+}
+
+.timeline-item{
+  display:grid;
+  grid-template-columns:180px 1fr;
+  gap:2rem;
+  position:relative;
+}
+
+.timeline-item::before{
+  content:'';
+  position:absolute;
+  left:180px;top:0;bottom:0;
+  width:1px;
+  background:var(--border);
+  transform:translateX(-0.5px);
+}
+.timeline-item:last-child::before{display:none}
+
+.timeline-meta{
+  padding-top:2rem;padding-bottom:2rem;
+  text-align:right;
+  padding-right:2rem;
+}
+
+.timeline-period{
+  font-size:0.75rem;font-weight:700;
+  color:var(--blue);letter-spacing:0.08em;
+  text-transform:uppercase;margin-bottom:0.25rem;
+}
+.timeline-company{
+  font-size:0.82rem;font-weight:600;
+  color:var(--gray-600);
+}
+.timeline-location{
+  font-size:0.72rem;color:var(--gray-400);margin-top:2px;
+}
+
+.timeline-dot{
+  position:absolute;
+  left:180px;top:2.2rem;
+  width:12px;height:12px;
+  background:var(--blue);
+  border:3px solid var(--cream);
+  border-radius:50%;
+  transform:translateX(-6px);
+  z-index:1;
+}
+.timeline-dot.current{
+  background:var(--teal);
+  box-shadow:0 0 0 4px rgba(13,148,136,0.15);
+}
+
+.timeline-content{
+  padding:2rem 0 2rem 2rem;
+}
+
+.timeline-title{
+  font-family:'Playfair Display',serif;
+  font-size:1.25rem;font-weight:700;
+  color:var(--navy);margin-bottom:0.4rem;
+}
+
+.current-badge{
+  display:inline-flex;align-items:center;gap:0.35rem;
+  font-size:0.65rem;font-weight:700;
+  letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--teal);
+  background:rgba(13,148,136,0.08);
+  border:1px solid rgba(13,148,136,0.25);
+  padding:0.2rem 0.7rem;border-radius:20px;
+  margin-left:0.75rem;vertical-align:middle;
+}
+.current-badge::before{
+  content:'';width:6px;height:6px;
+  background:var(--teal);border-radius:50%;
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+
+.timeline-achievements{
+  list-style:none;margin-top:1rem;
+  display:flex;flex-direction:column;gap:0.6rem;
+}
+.timeline-achievements li{
+  font-size:0.9rem;color:var(--gray-600);
+  line-height:1.65;
+  padding-left:1.25rem;
+  position:relative;font-weight:400;
+}
+.timeline-achievements li::before{
+  content:'→';
+  position:absolute;left:0;
+  color:var(--blue);font-size:0.75rem;
+  top:0.15rem;
+}
+
+.highlight{
+  font-weight:700;color:var(--navy);
+}
+
+.impact-pill{
+  display:inline-flex;align-items:center;gap:0.3rem;
+  font-size:0.72rem;font-weight:700;
+  padding:0.2rem 0.65rem;
+  border-radius:4px;
+  margin:0 2px;
+  vertical-align:baseline;
+}
+.impact-green{background:rgba(13,148,136,0.1);color:var(--teal)}
+.impact-blue{background:rgba(29,78,216,0.08);color:var(--blue)}
+.impact-gold{background:rgba(180,83,9,0.08);color:var(--gold)}
+
+.timeline-tags{
+  display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:1.25rem;
+}
+.timeline-tag{
+  font-size:0.68rem;font-weight:600;
+  padding:0.25rem 0.7rem;
+  border-radius:4px;
+  background:var(--gray-100);
+  color:var(--gray-600);
+  letter-spacing:0.04em;
+}
+
+/* ── SKILLS MATRIX ── */
+.skills-layout{
+  display:grid;grid-template-columns:1fr 1fr;gap:2rem;
+}
+
+.skill-group{
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:2rem;
+  box-shadow:var(--shadow-sm);
+}
+.skill-group-title{
+  font-size:0.72rem;font-weight:700;
+  letter-spacing:0.15em;text-transform:uppercase;
+  color:var(--blue);margin-bottom:1.5rem;
+  display:flex;align-items:center;gap:0.5rem;
+}
+
+.skill-bars{
+  display:flex;flex-direction:column;gap:1.1rem;
+}
+.skill-row{
+  display:flex;flex-direction:column;gap:0.4rem;
+}
+.skill-row-top{
+  display:flex;justify-content:space-between;align-items:center;
+}
+.skill-name-text{
+  font-size:0.85rem;font-weight:600;color:var(--gray-800);
+}
+.skill-lvl{
+  font-size:0.68rem;font-weight:700;
+  letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--gray-400);
+}
+.skill-bar-track{
+  height:4px;background:var(--gray-200);border-radius:2px;overflow:hidden;
+}
+.skill-bar-fill{
+  height:100%;border-radius:2px;
+  transition:width 1.2s cubic-bezier(0.4,0,0.2,1);
+}
+.fill-navy{background:var(--navy)}
+.fill-blue{background:var(--blue)}
+.fill-teal{background:var(--teal)}
+.fill-gold{background:var(--gold)}
+
+/* ── CERTIFICATIONS ── */
+.cert-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;
+}
+.cert-card{
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:1.5rem;
+  box-shadow:var(--shadow-sm);
+  transition:all 0.25s;
+}
+.cert-card:hover{
+  border-color:var(--blue);
+  transform:translateY(-3px);
+  box-shadow:var(--shadow-md);
+}
+.cert-icon{font-size:1.5rem;margin-bottom:0.75rem}
+.cert-title{
+  font-size:0.88rem;font-weight:700;
+  color:var(--navy);line-height:1.35;margin-bottom:0.35rem;
+}
+.cert-issuer{
+  font-size:0.75rem;font-weight:500;
+  color:var(--blue);letter-spacing:0.04em;
+}
+
+/* ── EDUCATION ── */
+.edu-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;
+  margin-bottom:3rem;
+}
+.edu-card{
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:14px;
+  padding:2rem 1.75rem;
+  transition:all 0.25s;
+}
+.edu-card:hover{
+  background:rgba(255,255,255,0.1);
+  transform:translateY(-3px);
+}
+.edu-deg{
+  font-family:'Playfair Display',serif;
+  font-size:1.05rem;font-weight:700;
+  color:var(--white);line-height:1.3;margin-bottom:0.5rem;
+}
+.edu-field{
+  font-size:0.82rem;font-weight:500;
+  color:var(--teal);margin-bottom:0.35rem;
+}
+.edu-uni{
+  font-size:0.78rem;color:rgba(255,255,255,0.5);
+}
+.edu-status{
+  display:inline-block;
+  font-size:0.65rem;font-weight:700;
+  letter-spacing:0.1em;text-transform:uppercase;
+  padding:0.2rem 0.6rem;border-radius:4px;
+  margin-top:0.75rem;
+}
+.status-active{background:rgba(13,148,136,0.2);color:var(--teal)}
+.status-done{background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.45)}
+
+/* ── CONTACT ── */
+.contact-layout{
+  display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;
+}
+.contact-intro p{
+  font-size:1rem;color:var(--gray-600);line-height:1.85;margin-bottom:1.25rem;font-weight:300;
+}
+.contact-links{
+  display:flex;flex-direction:column;gap:0.85rem;margin-top:2rem;
+}
+.contact-link{
+  display:flex;align-items:center;gap:1rem;
+  padding:1rem 1.5rem;
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:10px;
+  text-decoration:none;
+  transition:all 0.25s;
+  box-shadow:var(--shadow-sm);
+}
+.contact-link:hover{
+  border-color:var(--blue);
+  transform:translateX(4px);
+  box-shadow:var(--shadow-md);
+}
+.contact-link-icon{
+  width:38px;height:38px;
+  background:var(--navy);
+  border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;flex-shrink:0;
+  color:var(--white);
+}
+.contact-link-label{
+  font-size:0.7rem;font-weight:700;
+  letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--blue);margin-bottom:2px;
+}
+.contact-link-val{
+  font-size:0.88rem;font-weight:500;color:var(--navy);
+}
+
+/* ── CONTACT FORM ── */
+.contact-form{
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:2.5rem;
+  box-shadow:var(--shadow-md);
+}
+.form-title{
+  font-family:'Playfair Display',serif;
+  font-size:1.4rem;font-weight:700;
+  color:var(--navy);margin-bottom:0.35rem;
+}
+.form-sub{
+  font-size:0.85rem;color:var(--gray-400);margin-bottom:2rem;
+}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.form-group{
+  display:flex;flex-direction:column;gap:0.4rem;margin-bottom:1rem;
+}
+.form-group label{
+  font-size:0.72rem;font-weight:700;
+  letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--gray-600);
+}
+.form-group input,
+.form-group textarea,
+.form-group select{
+  background:var(--gray-50);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:0.8rem 1rem;
+  color:var(--gray-800);
+  font-family:'Manrope',sans-serif;
+  font-size:0.9rem;
+  outline:none;
+  transition:border-color 0.2s,box-shadow 0.2s;
+  resize:vertical;
+  width:100%;
+}
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus{
+  border-color:var(--blue);
+  box-shadow:0 0 0 3px rgba(29,78,216,0.08);
+  background:var(--white);
+}
+.form-group textarea{min-height:120px}
+.btn-navy{
+  background:var(--navy);color:var(--white);width:100%;
+  justify-content:center;margin-top:0.5rem;
+}
+.btn-navy:hover{background:var(--blue);transform:translateY(-2px);box-shadow:var(--shadow-md)}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--navy2);
+  padding:2rem 5vw;
+  display:flex;justify-content:space-between;align-items:center;
+}
+footer p{
+  font-size:0.78rem;color:rgba(255,255,255,0.4);
+  font-weight:400;
+}
+footer p strong{color:rgba(255,255,255,0.7)}
+footer a{
+  color:var(--teal);text-decoration:none;font-size:0.78rem;
+}
+
+/* ── FADE UP ANIMATION ── */
+.reveal{
+  opacity:0;transform:translateY(28px);
+  transition:opacity 0.65s ease,transform 0.65s ease;
+}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr}
+  .hero-right{padding:2rem 5vw 5rem;gap:1rem}
+  .hero-left{padding:8rem 5vw 3rem}
+  .timeline-item{grid-template-columns:1fr}
+  .timeline-item::before{display:none}
+  .timeline-dot{display:none}
+  .timeline-meta{text-align:left;padding:1rem 0 0}
+  .timeline-content{padding:0.5rem 0 2rem}
+  .skills-layout,
+  .cert-grid,
+  .edu-grid,
+  .contact-layout{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  footer{flex-direction:column;gap:0.5rem;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="nav">
+  <a href="#home" class="nav-brand">
+    <span class="nav-name">Mkhuleko M. Shongwe</span>
+    <span class="nav-role">FinTech Product Manager</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact" class="nav-cta">Contact Me</a></li>
+  </ul>
+</nav>
+
+
+<!-- ── HERO ── -->
+<section id="home" class="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-text">FinTech Product Manager · Eswatini</span>
+    </div>
+
+    <h1>
+      Product strategy.<br/>
+      Data science.<br/>
+      <em>Commercial growth.</em>
+    </h1>
+
+    <p class="hero-summary">
+      I build fintech products that grow revenue, delight customers, and survive regulators.
+      From digital wallets and lending to payment switch integrations — I translate data and 
+      business complexity into products that actually ship and scale.
+    </p>
+
+    <div class="hero-tags">
+      <span class="hero-tag">Digital Wallets & Payments</span>
+      <span class="hero-tag">Product Roadmap & Strategy</span>
+      <span class="hero-tag">Machine Learning</span>
+      <span class="hero-tag">Power BI · SQL · Python</span>
+      <span class="hero-tag">AML/KYC Compliance</span>
+      <span class="hero-tag">Lean Six Sigma Green Belt</span>
+    </div>
+
+    <div class="hero-actions">
+      <a href="#experience" class="btn btn-white">View My Work</a>
+      <a href="mailto:mkhuleko.m.shongwe@gmail.com" class="btn btn-ghost">Email Me →</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="metric-card">
+      <div class="metric-icon">📈</div>
+      <div>
+        <div class="metric-num"><span>150%</span> YoY</div>
+        <div class="metric-label">Remittance growth via regulatory engagement &amp; new BOP framework</div>
+      </div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-icon">🏦</div>
+      <div>
+        <div class="metric-num">+<span>20%</span></div>
+        <div class="metric-label">Wallet-to-bank transaction volume via national payment switch integration</div>
+      </div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-icon">📊</div>
+      <div>
+        <div class="metric-num"><span>25+</span></div>
+        <div class="metric-label">Power BI dashboards delivered, saving 20 hrs/month in reporting</div>
+      </div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-icon">🤖</div>
+      <div>
+        <div class="metric-num"><span>4</span> ML Models</div>
+        <div class="metric-label">Deployed for churn reduction &amp; customer acquisition at Standard Bank</div>
+      </div>
+    </div>
+    <div class="hero-tenure">
+      <strong>Currently:</strong> Manager, FinTech Products @ MTN FinTech Eswatini<br/>
+      Leading wallet, payments, lending, remittances &amp; interoperability portfolios — June 2024 to Present
+    </div>
+  </div>
+</section>
+
+
+<!-- ── ABOUT ── -->
+<section id="about" class="section">
+  <div class="section-header reveal">
+    <div class="section-eyebrow">About Me</div>
+    <h2>Engineering roots.<br/><em>Product&nbsp;mindset.</em></h2>
+    <p class="section-sub">
+      I started as a Civil &amp; Transportation Engineer, crossed into data science at Standard Bank,
+      and now lead fintech product strategy at MTN. My edge is rare: I speak fluently to engineers,
+      analysts, regulators, and executives — and I use that to ship products that matter.
+    </p>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem;max-width:900px" class="reveal">
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:14px;padding:2rem;box-shadow:var(--shadow-sm)">
+      <div style="font-size:2rem;margin-bottom:1rem">⚙️</div>
+      <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--navy);margin-bottom:0.5rem">Engineering Foundation</div>
+      <p style="font-size:0.85rem;color:var(--gray-600);line-height:1.7;font-weight:300">Three engineering degrees from the University of Pretoria. I think in systems — which makes me a better product manager.</p>
+    </div>
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:14px;padding:2rem;box-shadow:var(--shadow-sm)">
+      <div style="font-size:2rem;margin-bottom:1rem">🧠</div>
+      <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--navy);margin-bottom:0.5rem">Data Science Craft</div>
+      <p style="font-size:0.85rem;color:var(--gray-600);line-height:1.7;font-weight:300">2+ years deploying ML models, building BI infrastructure, and automating analytics at Standard Bank — my product decisions are data-first.</p>
+    </div>
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:14px;padding:2rem;box-shadow:var(--shadow-sm)">
+      <div style="font-size:2rem;margin-bottom:1rem">🚀</div>
+      <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--navy);margin-bottom:0.5rem">FinTech Leadership</div>
+      <p style="font-size:0.85rem;color:var(--gray-600);line-height:1.7;font-weight:300">Leading a team at MTN, owning P&amp;L, engaging regulators, and shipping products across payments, lending, wallets and remittances.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── EXPERIENCE ── -->
+<section id="experience" class="section section-alt">
+  <div class="section-header reveal">
+    <div class="section-eyebrow">Experience</div>
+    <h2>Career <em>timeline</em></h2>
+    <p class="section-sub">From operations engineering to data science to fintech product leadership — each step intentional.</p>
+  </div>
+
+  <div class="timeline">
+
+    <!-- MTN FinTech -->
+    <div class="timeline-item reveal">
+      <div class="timeline-meta">
+        <div class="timeline-period">Jun 2024 — Present</div>
+        <div class="timeline-company">MTN FinTech</div>
+        <div class="timeline-location">Eswatini</div>
+      </div>
+      <div class="timeline-dot current"></div>
+      <div class="timeline-content">
+        <div class="timeline-title">
+          Manager, FinTech Products
+          <span class="current-badge">Current</span>
+        </div>
+        <ul class="timeline-achievements">
+          <li>Own end-to-end product roadmaps across <span class="highlight">wallet, payments, lending, remittance, and bank-to-wallet interoperability</span> portfolios — managing a team of 4 Product Specialists to deliver <span class="impact-pill impact-green">95% roadmap delivery</span> and an <span class="impact-pill impact-teal">86% employee satisfaction score</span>.</li>
+          <li>Integrated MoMo with the Eswatini National Payment Switch, achieving <span class="impact-pill impact-green">+20% wallet-to-bank transaction volume</span> and enabling seamless interoperability with all local banks.</li>
+          <li>Unlocked <span class="impact-pill impact-gold">150% YoY remittance growth</span> by leading Central Bank regulatory engagement to secure approval for a revised BOP reporting framework.</li>
+          <li>Built automated <span class="highlight">Power BI dashboards using SQL-based datasets</span>, giving EXCO and the Board near-real-time visibility into financial performance, customer adoption, and operational KPIs.</li>
+          <li>Led structured requirements discovery via business workshops and VoC feedback, directly informing product design and roadmap prioritization across fintech product lines.</li>
+          <li>Directed end-to-end product governance: monitored AML/KYC controls, revenue assurance, and compliance variance — eliminating revenue leakage and operational risk through corrective technical action.</li>
+        </ul>
+        <div class="timeline-tags">
+          <span class="timeline-tag">Product Strategy</span>
+          <span class="timeline-tag">Agile</span>
+          <span class="timeline-tag">Power BI</span>
+          <span class="timeline-tag">SQL</span>
+          <span class="timeline-tag">Payments</span>
+          <span class="timeline-tag">AML/KYC</span>
+          <span class="timeline-tag">P&L Management</span>
+          <span class="timeline-tag">Regulatory Engagement</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Standard Bank -->
+    <div class="timeline-item reveal">
+      <div class="timeline-meta">
+        <div class="timeline-period">Mar 2022 — May 2024</div>
+        <div class="timeline-company">Standard Bank</div>
+        <div class="timeline-location">Eswatini</div>
+      </div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-title">Data Scientist</div>
+        <ul class="timeline-achievements">
+          <li>Deployed <span class="impact-pill impact-blue">4 ML models in Python</span> across CIB, Private Banking, and FinTech — driving targeted acquisition and churn-reduction campaigns that produced measurable commercial outcomes.</li>
+          <li>Delivered <span class="impact-pill impact-blue">25+ Power BI dashboards</span>, automating reporting with SQL, Python, and Power Automate — returning <span class="impact-pill impact-green">20 hours/month</span> to the business.</li>
+          <li>Led end-to-end delivery of internal analytics products: Power BI dashboards, custom Power Apps, and a centralized <span class="highlight">Insights Mall</span> — scaling stakeholder access to data across the organization.</li>
+          <li>Built automated SQL monitoring for <span class="highlight">CTR, AML alerts, revenue assurance, and regulatory reporting</span>, enabling proactive risk identification for banking and fintech products.</li>
+          <li>Applied <span class="highlight">customer segmentation, cohort analysis, and behavioral trend analysis</span> to large-scale transactional data — informing A/B testing and personalized engagement experiments.</li>
+        </ul>
+        <div class="timeline-tags">
+          <span class="timeline-tag">Python</span>
+          <span class="timeline-tag">Machine Learning</span>
+          <span class="timeline-tag">SQL</span>
+          <span class="timeline-tag">Power BI</span>
+          <span class="timeline-tag">Power Automate</span>
+          <span class="timeline-tag">Customer Segmentation</span>
+          <span class="timeline-tag">A/B Testing</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TotalEnergies -->
+    <div class="timeline-item reveal">
+      <div class="timeline-meta">
+        <div class="timeline-period">Jun 2019 — May 2020</div>
+        <div class="timeline-company">TotalEnergies</div>
+        <div class="timeline-location">Eswatini</div>
+      </div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-title">Operations &amp; CI Engineer</div>
+        <ul class="timeline-achievements">
+          <li>Reduced <span class="highlight">mean time to repair (MTTR) by 50%</span> — from 4 days to 2 days — across service stations by diagnosing operational bottlenecks and optimizing vendor scheduling.</li>
+          <li>Reduced fuel stockout risk across <span class="highlight">20 retail sites</span> by designing a standardized tank-volume reporting process, improving demand visibility and replenishment accuracy.</li>
+          <li>Led fuel pump CAPEX maintenance and replacement programs, improving service station uptime and asset reliability across the network.</li>
+        </ul>
+        <div class="timeline-tags">
+          <span class="timeline-tag">Lean Operations</span>
+          <span class="timeline-tag">Process Improvement</span>
+          <span class="timeline-tag">CAPEX Management</span>
+          <span class="timeline-tag">Vendor Management</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ── SKILLS ── -->
+<section id="skills" class="section">
+  <div class="section-header reveal">
+    <div class="section-eyebrow">Skills</div>
+    <h2>What I bring to<br/><em>the table</em></h2>
+    <p class="section-sub">A unique intersection of product management, data science, and engineering. Rare in fintech leadership.</p>
+  </div>
+
+  <div class="skills-layout reveal">
+
+    <div class="skill-group">
+      <div class="skill-group-title">🚀 Product &amp; FinTech</div>
+      <div class="skill-bars">
+        <div class="skill-row">
+          <div class="skill-row-top"><span class="skill-name-text">Product Strategy &amp; Roadmap</span><span class="skill-lvl">Expert</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill fill-navy" style="width:0%" data-w="95%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-row-top"><span class="skill-name-text">Digital Wallets &amp; Payments</span><span class="skill-lvl">Expert</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill fill-navy" style="width:0%" data-w="95%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-row-top"><span class="skill-name-text">Go-to-Market &amp; Commercialization</span><span class="skill-lvl">Advanced</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill fill-navy" style="width:0%" data-w="88%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-row-top"><span class="skill-name-text">Agile Delivery &amp; PRD Writing</span><span class="skill-lvl">Advanced</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill fill-navy" style="width:0%" data-w="90%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-row-top"><span class="skill-name-text">P&amp;L Optimization &amp; Pricing</span><span class="skill-lvl">Advanced</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill fill-navy" style="width:0%" data-w="85%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-row-top"><span class="skill-name-text">AML/KYC &amp; Regulatory Compliance</span><span class="skill-lvl">Advanced</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill fill-navy" style="width:0%" data-w="85%"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-group-title">🧠 Analytics &amp; Engineering</div>
+      <div class="skill-bars">
+        <div class="skill-row">
+          <div class="skill-row-top"><span class="skill-name-text">SQL &amp; Data Modelling</span><span class="skill-lvl">Advanced</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill fill-blue" style="width:0%" data-w="90%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-row-top"><span class="skill-name-text">Power BI &amp; KPI Dashboards</span><span class="skill-lvl">Expert</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill fill-blue" style="width:0%" data-w="95%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-row-top"><span class="skill-name-text">Python (Pandas, Scikit-learn)</span><span class="skill-lvl">Advanced</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill fill-blue" style="width:0%" data-w="82%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-row-top"><span class="skill-name-text">Machine Learning &amp; Predictive Models</span><span class="skill-lvl">Advanced</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill fill-blue" style="width:0%" data-w="80%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-row-top"><span class="skill-name-text">Power Automate &amp; Workflow Automation</span><span class="skill-lvl">Intermediate</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill fill-blue" style="width:0%" data-w="75%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-row-top"><span class="skill-name-text">Lean Six Sigma (Green Belt)</span><span class="skill-lvl">Certified</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill fill-teal" style="width:0%" data-w="85%"></div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ── EDUCATION ── -->
+<section id="education" class="section section-dark">
+  <div class="section-header reveal">
+    <div class="section-eyebrow">Education</div>
+    <h2>Academic<br/><em>foundation</em></h2>
+    <p class="section-sub">Three engineering degrees from the University of Pretoria — the analytical backbone behind every product decision.</p>
+  </div>
+
+  <div class="edu-grid reveal">
+    <div class="edu-card">
+      <div class="edu-deg">Master of Engineering</div>
+      <div class="edu-field">Technology &amp; Innovation Management</div>
+      <div class="edu-uni">University of Pretoria</div>
+      <span class="edu-status status-active">In Progress</span>
+    </div>
+    <div class="edu-card">
+      <div class="edu-deg">BEng (Honours)</div>
+      <div class="edu-field">Transportation Engineering</div>
+      <div class="edu-uni">University of Pretoria</div>
+      <span class="edu-status status-done">Completed</span>
+    </div>
+    <div class="edu-card">
+      <div class="edu-deg">Bachelor of Engineering</div>
+      <div class="edu-field">Civil Engineering</div>
+      <div class="edu-uni">University of Pretoria</div>
+      <span class="edu-status status-done">Completed</span>
+    </div>
+  </div>
+
+  <div style="margin-top:1rem">
+    <div class="section-eyebrow reveal" style="margin-bottom:1.5rem">Certifications</div>
+    <div class="cert-grid reveal">
+      <div class="cert-card">
+        <div class="cert-icon">🎓</div>
+        <div class="cert-title">Management Development Programme</div>
+        <div class="cert-issuer">Stellenbosch University</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">📐</div>
+        <div class="cert-title">Lean Management &amp; Six Sigma Green Belt</div>
+        <div class="cert-issuer">Simplilearn</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">🤖</div>
+        <div class="cert-title">Data Science Mastery Program</div>
+        <div class="cert-issuer">Analytics Vidhya</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">📈</div>
+        <div class="cert-title">Machine Learning &amp; Statistical Analysis</div>
+        <div class="cert-issuer">WorldQuant University</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">🗂️</div>
+        <div class="cert-title">Advanced Project Management</div>
+        <div class="cert-issuer">Stellenbosch University</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">💼</div>
+        <div class="cert-title">Management &amp; Leadership</div>
+        <div class="cert-issuer">Foundation for Professional Development</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── CONTACT ── -->
+<section id="contact" class="section">
+  <div class="section-header reveal">
+    <div class="section-eyebrow">Contact</div>
+    <h2>Let's talk about<br/><em>your next hire</em></h2>
+  </div>
+
+  <div class="contact-layout">
+    <div class="contact-intro reveal">
+      <p>
+        I'm open to senior product management roles in fintech, banking, or tech — particularly those that sit at the intersection of product strategy, data, and commercial growth.
+      </p>
+      <p>
+        Based in Eswatini, available for remote, hybrid, or relocation opportunities across Africa and beyond.
+      </p>
+      <!-- PLACEHOLDER: Add a short note about what you're ideally looking for, e.g., company stage, sector, geography -->
+
+      <div class="contact-links">
+        <a href="mailto:mkhuleko.m.shongwe@gmail.com" class="contact-link">
+          <div class="contact-link-icon">✉</div>
+          <div>
+            <div class="contact-link-label">Email</div>
+            <div class="contact-link-val">mkhuleko.m.shongwe@gmail.com</div>
+          </div>
+        </a>
+        <a href="https://www.linkedin.com/in/mayibongweshongwe/" target="_blank" rel="noopener" class="contact-link">
+          <div class="contact-link-icon">in</div>
+          <div>
+            <div class="contact-link-label">LinkedIn</div>
+            <div class="contact-link-val">linkedin.com/in/mayibongweshongwe</div>
+          </div>
+        </a>
+        <a href="tel:+26878462564" class="contact-link">
+          <div class="contact-link-icon">📞</div>
+          <div>
+            <div class="contact-link-label">Phone</div>
+            <div class="contact-link-val">(+268) 7846 2564</div>
+          </div>
+        </a>
+        <a href="https://github.com/mayibongweshongwe" target="_blank" rel="noopener" class="contact-link">
+          <div class="contact-link-icon" style="font-size:1.1rem">⌥</div>
+          <div>
+            <div class="contact-link-label">GitHub</div>
+            <div class="contact-link-val">github.com/mayibongweshongwe</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="contact-form reveal">
+      <div class="form-title">Send a message</div>
+      <div class="form-sub">I respond within 24 hours.</div>
+      <form onsubmit="handleForm(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fname">Name</label>
+            <input type="text" id="fname" placeholder="Your name" required/>
+          </div>
+          <div class="form-group">
+            <label for="femail">Email</label>
+            <input type="email" id="femail" placeholder="you@company.com" required/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="fcompany">Company / Organisation</label>
+          <input type="text" id="fcompany" placeholder="Company name (optional)"/>
+        </div>
+        <div class="form-group">
+          <label for="freason">Reason for reaching out</label>
+          <select id="freason">
+            <option value="">Select one...</option>
+            <option>Job opportunity</option>
+            <option>Consulting / freelance project</option>
+            <option>Collaboration</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="fmsg">Message</label>
+          <textarea id="fmsg" placeholder="Tell me about the role or opportunity..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-navy" id="fsubmit">Send Message →</button>
+      </form>
+      <!-- TIP: Connect this form to https://formspree.io for free email delivery -->
+    </div>
+  </div>
+</section>
+
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p>© 2025 <strong>Mkhuleko M. Shongwe</strong>. All rights reserved.</p>
+  <p>Built for GitHub Pages · <a href="https://github.com/mayibongweshongwe" target="_blank" rel="noopener">github.com/mayibongweshongwe</a></p>
+</footer>
+
+
+<script>
+// Nav shadow on scroll
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      // Animate skill bars
+      e.target.querySelectorAll('.skill-bar-fill').forEach(bar=>{
+        setTimeout(()=>{ bar.style.width = bar.dataset.w; }, 100);
+      });
+    }
+  });
+},{threshold:0.12});
+
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+// Form
+function handleForm(e){
+  e.preventDefault();
+  const btn = document.getElementById('fsubmit');
+  btn.textContent = 'Message Sent ✓';
+  btn.style.background = 'var(--teal)';
+  setTimeout(()=>{
+    btn.textContent = 'Send Message →';
+    btn.style.background = '';
+    e.target.reset();
+  }, 3500);
+}
+
+// Smooth metric counter animation on load
+function animateCounter(el, target, suffix=''){
+  let start = 0;
+  const duration = 1800;
+  const step = timestamp => {
+    if(!start) start = timestamp;
+    const progress = Math.min((timestamp - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.floor(ease * target) + suffix;
+    if(progress < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+</script>
+
+</body>
+</html>
