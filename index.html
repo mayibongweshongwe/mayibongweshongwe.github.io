@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mkhuleko Shongwe — Data Analyst</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0b0e11;
+    --surface: #111519;
+    --border: #1e252d;
+    --accent: #2EE8A5;
+    --accent2: #5B9CF6;
+    --accent3: #F2994A;
+    --text: #e8edf2;
+    --muted: #6b7a8d;
+    --card: #13191f;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* ── GRID LINES ── */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 60px 60px;
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 1.2rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(11, 14, 17, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ── SECTIONS ── */
+  section { position: relative; z-index: 1; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 8rem 6rem 4rem;
+    gap: 4rem;
+  }
+
+  .hero-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .hero-label::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3rem, 5vw, 5rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-desc {
+    color: var(--muted);
+    font-size: 1.05rem;
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 0.75rem 1.75rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--bg);
+    font-weight: 500;
+  }
+
+  .btn-primary:hover {
+    background: #1fd490;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(46,232,165,0.25);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+
+  .btn-outline:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  /* ── HERO RIGHT: STATS CARD ── */
+  .hero-visual {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    transition: border-color 0.3s, transform 0.3s;
+    animation: slideInRight 0.6s ease both;
+  }
+
+  .stat-card:hover {
+    border-color: var(--accent);
+    transform: translateX(-4px);
+  }
+
+  .stat-card:nth-child(1) { animation-delay: 0.1s; }
+  .stat-card:nth-child(2) { animation-delay: 0.2s; }
+  .stat-card:nth-child(3) { animation-delay: 0.3s; }
+
+  .stat-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+  }
+
+  .stat-icon.green { background: rgba(46,232,165,0.1); }
+  .stat-icon.blue  { background: rgba(91,156,246,0.1); }
+  .stat-icon.orange { background: rgba(242,153,74,0.1); }
+
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--text);
+  }
+
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  /* ── ABOUT ── */
+  .about {
+    padding: 7rem 6rem;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .section-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 3vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-text p {
+    color: var(--muted);
+    line-height: 1.9;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+  }
+
+  /* ── SKILLS ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    margin-top: 2.5rem;
+  }
+
+  .skill-pill {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.85rem 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: border-color 0.2s;
+  }
+
+  .skill-pill:hover { border-color: var(--accent2); }
+
+  .skill-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .skill-name {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--text);
+    letter-spacing: 0.04em;
+  }
+
+  .skill-level {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--muted);
+    margin-left: auto;
+  }
+
+  /* ── PROJECTS ── */
+  .projects {
+    padding: 7rem 6rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .projects-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3rem;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 2rem;
+    transition: border-color 0.3s, transform 0.3s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+
+  .project-card:hover {
+    border-color: transparent;
+    transform: translateY(-6px);
+    box-shadow: 0 20px 48px rgba(0,0,0,0.4);
+  }
+
+  .project-card:hover::before { transform: scaleX(1); }
+
+  .project-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    margin-bottom: 1.2rem;
+  }
+
+  .project-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.35rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+
+  .project-desc {
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .project-stack {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+
+  .stack-chip {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--muted);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    letter-spacing: 0.04em;
+  }
+
+  .project-link {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: gap 0.2s;
+  }
+
+  .project-link:hover { gap: 0.7rem; }
+
+  /* ── CONTACT ── */
+  .contact {
+    padding: 7rem 6rem;
+    border-top: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.2rem 1.5rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.25s;
+  }
+
+  .contact-item:hover {
+    border-color: var(--accent);
+    transform: translateX(4px);
+  }
+
+  .contact-icon {
+    font-size: 1.2rem;
+    width: 36px;
+    text-align: center;
+  }
+
+  .contact-detail strong {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .contact-detail span {
+    font-size: 0.9rem;
+    color: var(--text);
+  }
+
+  /* ── CONTACT FORM ── */
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .form-group label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.85rem 1.2rem;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+    resize: vertical;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: var(--accent);
+  }
+
+  .form-group textarea { min-height: 120px; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  footer p {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+
+  footer p span { color: var(--accent); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes slideInRight {
+    from { opacity: 0; transform: translateX(30px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-left > * {
+    animation: fadeUp 0.7s ease both;
+  }
+
+  .hero-left > *:nth-child(1) { animation-delay: 0.05s; }
+  .hero-left > *:nth-child(2) { animation-delay: 0.15s; }
+  .hero-left > *:nth-child(3) { animation-delay: 0.25s; }
+  .hero-left > *:nth-child(4) { animation-delay: 0.35s; }
+
+  /* ── GLOW BLOB ── */
+  .glow {
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(46,232,165,0.06) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    top: -200px;
+    right: -200px;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem; }
+    .nav-links { gap: 1.2rem; }
+
+    .hero {
+      grid-template-columns: 1fr;
+      padding: 7rem 2rem 4rem;
+      gap: 3rem;
+    }
+
+    .about, .contact {
+      grid-template-columns: 1fr;
+      padding: 5rem 2rem;
+      gap: 3rem;
+    }
+
+    .projects { padding: 5rem 2rem; }
+
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .skills-grid {
+      grid-template-columns: 1fr;
+    }
+
+    footer {
+      padding: 2rem;
+      flex-direction: column;
+      gap: 0.5rem;
+      text-align: center;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="glow"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">MS.DEV</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="https://github.com/mayibongweshongwe" target="_blank" rel="noopener">GitHub</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <div class="hero-label">Available for opportunities</div>
+    <h1>
+      Turning data into<br/>
+      <em>actionable</em><br/>
+      insights
+    </h1>
+    <p class="hero-desc">
+      Hi, I'm <strong>Mkhuleko Shongwe</strong> — a Data Analyst who transforms complex, messy datasets into clear stories that drive smarter decisions.
+    </p>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn btn-primary">View My Work</a>
+      <a href="#contact" class="btn btn-outline">Get In Touch</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="stat-card">
+      <div class="stat-icon green">📊</div>
+      <div>
+        <div class="stat-num">SQL</div>
+        <div class="stat-label">Advanced · Power BI · Tableau</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon blue">🐍</div>
+      <div>
+        <div class="stat-num">Python</div>
+        <div class="stat-label">Intermediate · Pandas · Scikit-learn</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon orange">📈</div>
+      <div>
+        <div class="stat-num">BI</div>
+        <div class="stat-label">KPI Development · A/B Testing · Forecasting</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-left">
+    <div class="section-tag">// 01 — About</div>
+    <h2>Data analyst.<br/>Story<em>teller</em>.</h2>
+  </div>
+
+  <div class="about-text">
+    <p>
+      I'm passionate about helping businesses make sense of their data. My focus is on building dashboards that actually get used, automating repetitive tasks so teams can focus on more interesting problems, and creating models that help businesses plan confidently for the future.
+    </p>
+    <p>
+      I love the "aha!" moment when data reveals something unexpected and useful — that moment is what drives everything I do.
+    </p>
+
+    <div class="skills-grid">
+      <div class="skill-pill">
+        <div class="skill-dot" style="background:#2EE8A5;"></div>
+        <span class="skill-name">SQL</span>
+        <span class="skill-level">Advanced</span>
+      </div>
+      <div class="skill-pill">
+        <div class="skill-dot" style="background:#2EE8A5;"></div>
+        <span class="skill-name">Power BI</span>
+        <span class="skill-level">Expert</span>
+      </div>
+      <div class="skill-pill">
+        <div class="skill-dot" style="background:#5B9CF6;"></div>
+        <span class="skill-name">Python</span>
+        <span class="skill-level">Intermediate</span>
+      </div>
+      <div class="skill-pill">
+        <div class="skill-dot" style="background:#5B9CF6;"></div>
+        <span class="skill-name">R</span>
+        <span class="skill-level">Beginner</span>
+      </div>
+      <div class="skill-pill">
+        <div class="skill-dot" style="background:#F2994A;"></div>
+        <span class="skill-name">Tableau</span>
+        <span class="skill-level">Intermediate</span>
+      </div>
+      <div class="skill-pill">
+        <div class="skill-dot" style="background:#F2994A;"></div>
+        <span class="skill-name">Excel</span>
+        <span class="skill-level">Expert</span>
+      </div>
+      <div class="skill-pill">
+        <div class="skill-dot" style="background:#9B8DE8;"></div>
+        <span class="skill-name">A/B Testing</span>
+        <span class="skill-level">Experienced</span>
+      </div>
+      <div class="skill-pill">
+        <div class="skill-dot" style="background:#9B8DE8;"></div>
+        <span class="skill-name">Predictive Modeling</span>
+        <span class="skill-level">Intermediate</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects" id="projects">
+  <div class="projects-header">
+    <div>
+      <div class="section-tag">// 02 — Projects</div>
+      <h2>Selected <em>work</em></h2>
+    </div>
+    <a href="https://github.com/mayibongweshongwe" target="_blank" rel="noopener" class="btn btn-outline">All Projects ↗</a>
+  </div>
+
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-num">PROJECT 01</div>
+      <span class="project-tag" style="background:rgba(46,232,165,0.1);color:#2EE8A5;">📊 Dashboard</span>
+      <h3>Sales Performance Dashboard</h3>
+      <p class="project-desc">
+        An interactive Power BI dashboard tracking KPIs across regions, with drill-down capability and automated data refresh from SQL sources.
+      </p>
+      <div class="project-stack">
+        <span class="stack-chip">Power BI</span>
+        <span class="stack-chip">SQL</span>
+        <span class="stack-chip">DAX</span>
+      </div>
+      <a href="https://github.com/mayibongweshongwe" class="project-link" target="_blank" rel="noopener">
+        View Project →
+      </a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">PROJECT 02</div>
+      <span class="project-tag" style="background:rgba(91,156,246,0.1);color:#5B9CF6;">🤖 Automation</span>
+      <h3>Data Pipeline Automation</h3>
+      <p class="project-desc">
+        Python scripts that automate ETL workflows, reducing manual reporting time by hours each week and eliminating human error in data transformation.
+      </p>
+      <div class="project-stack">
+        <span class="stack-chip">Python</span>
+        <span class="stack-chip">Pandas</span>
+        <span class="stack-chip">Excel</span>
+      </div>
+      <a href="https://github.com/mayibongweshongwe" class="project-link" target="_blank" rel="noopener">
+        View Project →
+      </a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">PROJECT 03</div>
+      <span class="project-tag" style="background:rgba(242,153,74,0.1);color:#F2994A;">📈 Forecasting</span>
+      <h3>Revenue Forecasting Model</h3>
+      <p class="project-desc">
+        Predictive model built in Python using historical sales data to forecast quarterly revenue with confidence intervals for business planning.
+      </p>
+      <div class="project-stack">
+        <span class="stack-chip">Python</span>
+        <span class="stack-chip">Scikit-learn</span>
+        <span class="stack-chip">Tableau</span>
+      </div>
+      <a href="https://github.com/mayibongweshongwe" class="project-link" target="_blank" rel="noopener">
+        View Project →
+      </a>
+    </div>
+
+  </div>
+
+  <!-- ADD YOUR OWN PROJECTS NOTE -->
+  <div style="margin-top:2rem; padding:1.5rem 2rem; background:rgba(46,232,165,0.05); border:1px dashed rgba(46,232,165,0.25); border-radius:10px; font-family:'DM Mono',monospace; font-size:0.78rem; color:var(--muted); line-height:1.8;">
+    💡 <strong style="color:var(--accent);">To add your real projects:</strong> edit the project cards above in <code>index.html</code> and replace the title, description, stack chips, and GitHub links.
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-left">
+    <div class="section-tag">// 03 — Contact</div>
+    <h2>Let's build something<br/><em>together</em></h2>
+    <p style="color:var(--muted);line-height:1.8;margin-bottom:2rem;">
+      Open to data analyst roles, freelance analytics projects, and collaborations. I'm based in Eswatini and work remotely.
+    </p>
+
+    <div class="contact-links">
+      <a href="mailto:mkhuleko.m.shongwe@gmail.com" class="contact-item">
+        <span class="contact-icon">✉️</span>
+        <div class="contact-detail">
+          <strong>Email</strong>
+          <span>mkhuleko.m.shongwe@gmail.com</span>
+        </div>
+      </a>
+      <a href="https://www.linkedin.com/in/mayibongweshongwe/" target="_blank" rel="noopener" class="contact-item">
+        <span class="contact-icon">💼</span>
+        <div class="contact-detail">
+          <strong>LinkedIn</strong>
+          <span>mayibongweshongwe</span>
+        </div>
+      </a>
+      <a href="https://github.com/mayibongweshongwe" target="_blank" rel="noopener" class="contact-item">
+        <span class="contact-icon">🐙</span>
+        <div class="contact-detail">
+          <strong>GitHub</strong>
+          <span>mayibongweshongwe</span>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div>
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" placeholder="Your name" required />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="your@email.com" required />
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" placeholder="Tell me about your project or opportunity..." required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" style="align-self:flex-start;">Send Message →</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <span>Mkhuleko Shongwe</span>. All rights reserved.</p>
+  <p>Built with ♥ · Hosted on <span>GitHub Pages</span></p>
+</footer>
+
+<script>
+  // Subtle glow follows mouse
+  document.addEventListener('mousemove', (e) => {
+    const glow = document.querySelector('.glow');
+    glow.style.left = (e.clientX - 300) + 'px';
+    glow.style.top  = (e.clientY - 300) + 'px';
+  });
+
+  // Form submission placeholder
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    btn.textContent = 'Sent! ✓';
+    btn.style.background = '#1fd490';
+    setTimeout(() => {
+      btn.textContent = 'Send Message →';
+      btn.style.background = '';
+      e.target.reset();
+    }, 3000);
+    // To make the form actually send emails, connect it to
+    // a service like Formspree: https://formspree.io
+  }
+
+  // Intersection observer for fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => {
+      if (el.isIntersecting) {
+        el.target.style.opacity = '1';
+        el.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.project-card, .skill-pill, .contact-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease, border-color 0.3s';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
